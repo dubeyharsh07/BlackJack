@@ -1,4 +1,4 @@
-package model
+package models
 
 var cardValues = map[string][]int{
 	"Ace" : []int{1,10},

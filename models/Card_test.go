@@ -1,4 +1,4 @@
-package model
+package models
 
 import "testing"
 
@@ -34,7 +34,7 @@ func TestCardWithValueAndType(t *testing.T) {
 
 	for _, element := range cards {
 		card := newCard(element.inputType)
-		
+
 		if card.cardType != element.inputType {
 			t.Errorf("Expected type to be '%s', but got '%s'", element.inputType, card.cardType)
 		}

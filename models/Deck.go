@@ -1,18 +1,58 @@
-package model
+package models
+
 
 type Deck struct {
-	cards []Card
+	cards []*Card
 }
 
-func initializeDeck() []*Card {
+func initializeDeck() *Deck {
 
-	deck := []Deck{}
-	for key,value := range cardValues {
-		card := newCard(key)
-		deck = append(deck,card)
-		deck = append(deck,card)
-		deck = append(deck,card)
-		deck = append(deck,card)
+	cards := initializeCards()
+
+	deck := &Deck{
+		cards: cards,
 	}
-	return deck.cards
+	return deck
+}
+
+func emptyDeck() *Deck {
+	return &Deck{
+		cards: []*Card{},
+	}
+}
+
+func (deck *Deck) addCard(cardType string) error {
+	if len(deck.cards) >= 52 {
+		return errors.New("Deck is full.")
+	}
+
+	cardTypeCount := deck.getSimilarCardCount(cardType)
+	if cardTypeCount >= 4 {
+		return fmt.Errorf("Number of cards of type %s in deck exceeds.", cardType)
+	}
+
+	deck.cards = append(deck.cards, newCard(cardType))
+	return nil
+}
+
+func (deck *Deck) getSimilarCardCount(cardType string) int {
+	count := 0
+	for _, card := range deck.cards {
+		if card.cardType == cardType {
+			count++
+		}
+	}
+	return count
+}
+
+func initializeCards() []*Card {
+	var cards []*Card
+	for cardType, _ := range cardValues {
+		cards = append(cards, newCard(cardType))
+		cards = append(cards, newCard(cardType))
+		cards = append(cards, newCard(cardType))
+		cards = append(cards, newCard(cardType))
+	}
+
+	return cards
 }
