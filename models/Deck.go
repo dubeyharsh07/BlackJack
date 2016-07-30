@@ -56,3 +56,9 @@ func initializeCards() []*Card {
 
 	return cards
 }
+
+func (d *Deck) nextCard() *Card {
+	card := d.cards[0]
+	d.cards = d.cards[1:]
+	return card
+}

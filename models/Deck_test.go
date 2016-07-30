@@ -32,7 +32,7 @@ func TestShouldRetrunErrorWhenAddingNewCardToInitializedDeck(t *testing.T) {
 	}
 }
 
-func TestShouldRetrunErrorWhenAdding5thCardOfATypeIntoADeck(t *testing.T) {
+func TestShouldRetrunErrorWhenAdding5thCardOfSameTypeIntoADeck(t *testing.T) {
 	deck := emptyDeck()
 	for i := 1; i <= 4; i++ {
 		err := deck.addCard("Jack")
