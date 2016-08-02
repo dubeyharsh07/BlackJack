@@ -14,5 +14,5 @@ func (d *Dealer) dealCard() *Card {
 }
 
 func (d *Dealer) selfDealOfCard() {
-	d.hand.addCard(d.Deal())
+	d.hand.addCard(d.dealCard())
 }
